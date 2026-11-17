@@ -1,0 +1,231 @@
+
+  <section class="hero hero--centred" data-enter aria-labelledby="hero-h">
+    <div class="wrap"><div class="hero-text">
+      <div class="hero__c">
+        <h1 id="hero-h" aria-label="A board for both">A board for both</h1>
+        <p class="hero__lead">Drop a task. A coding agent claims it over MCP, works on it and moves it to In Review when it is done. You approve. MIT licensed, self-host with Node 22+.</p>
+        <div class="btn-row">
+          <a class="btn btn--primary" href="/board">Open your board<svg class="m-arrow" viewBox="0 0 12 12" aria-hidden="true"><path class="m-arrow__stem" d="M1 6h8"/><path class="m-arrow__head" d="M4.5 2.5 8 6l-3.5 3.5"/></svg></a>
+          <a class="btn btn--secondary" href="https://github.com/KwanekDev/agentboard">Get the code</a>
+        </div>
+      </div>
+      <div class="hero__window" role="img" aria-label="AgentBoard window: a card claimed by Codex moves from To Do to In Progress">
+        <div class="ly-piece ui ui-panel ui-win" data-ui="window" data-open="To do" data-work="In progress" data-done="Done" data-ly-steps="900">
+          <div class="ui-win__bar">
+            <span class="ui-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+            <span class="ui-win__crumb">
+              <svg class="ui-brand" aria-hidden="true" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 195"><g><path d="M118.249172,51.2326115 L118.249172,194.005605 L0,194.005605 L118.249172,51.2326115 Z M118.249172,2.84217094e-14 C118.249172,32.6440764 91.7686624,59.124586 59.124586,59.124586 C26.4805096,59.124586 0,32.6440764 0,2.84217094e-14 L118.249172,2.84217094e-14 Z M137.750828,194.005605 C137.750828,161.328917 164.198726,134.881019 196.875414,134.881019 C229.552102,134.881019 256,161.361529 256,194.005605 L137.750828,194.005605 Z M137.750828,142.740382 L137.750828,0 L256,0 L137.750828,142.740382 Z" fill="currentColor"/></g></svg>
+              AgentBoard <i>/</i> <b>Board</b>
+            </span>
+            <span class="ui-spacer"></span>
+            <span class="ui-win__search" aria-hidden="true"><svg class="ui-icon" viewBox="0 0 16 16"><circle cx="7" cy="7" r="4.5"/><path d="m10.5 10.5 3 3"/></svg><span class="ui-win__ph">Search</span><span class="ui-kbd">/</span></span>
+          </div>
+          <div class="ui-win__body">
+            <nav class="ui-win__side" aria-hidden="true">
+              <span class="ui-win__nav is-on"><svg class="ui-icon" viewBox="0 0 16 16"><path d="M2.5 9h3l1 1.5h3l1-1.5h3"/><path d="M2.5 9 4 3.5h8L13.5 9v3.5h-11z"/></svg>To Do<em>5</em></span>
+              <span class="ui-win__nav"><svg class="ui-icon" viewBox="0 0 16 16"><circle cx="8" cy="6" r="2.5"/><path d="M3.5 13.5c.6-2.3 2.4-3.5 4.5-3.5s3.9 1.2 4.5 3.5"/></svg>In Progress<em>2</em></span>
+              <span class="ui-win__nav"><svg class="ui-icon" viewBox="0 0 16 16"><circle cx="8" cy="8" r="5.5"/><path d="M8 5v3l2 1.5"/></svg>In Review<em>1</em></span>
+              <span class="ui-win__nav"><svg class="ui-icon" viewBox="0 0 16 16"><path d="m3.5 8.4 2.8 2.8 6.2-6.4"/></svg>Done<em>48</em></span>
+              <span class="ui-win__label">Board</span>
+              <span class="ui-win__nav"><span class="ui-win__hash">#</span>Backlog<em>12</em></span>
+              <span class="ui-win__nav"><span class="ui-win__hash">#</span>Agents</span>
+            </nav>
+            <div class="ui-win__main">
+              <div class="ui-win__cols" aria-hidden="true"><span>Card</span><span>Agent</span><span>Status</span><span>Age</span></div>
+              <ul class="ui-win__rows">
+                <li class="ui-win__row" data-row><span class="ui-avatar" data-tone="1">CX</span><span class="ui-win__who">Codex</span><span class="ui-win__sub">Fix OAuth refresh flow</span><span class="ui-win__st is-you" data-st>In progress</span><span class="ui-win__age">2m</span></li>
+                <li class="ui-win__row" data-row data-step><span class="ui-avatar" data-tone="3">CC</span><span class="ui-win__who">Claude Code</span><span class="ui-win__sub">CSV export endpoint</span><span class="ui-win__st" data-st>In review</span><span class="ui-win__age">14m</span></li>
+                <li class="ui-win__row" data-row data-step><span class="ui-avatar" data-tone="4">CU</span><span class="ui-win__who">Cursor</span><span class="ui-win__sub">Update README quickstart</span><span class="ui-win__st" data-st>To do</span><span class="ui-win__age">1h</span></li>
+                <li class="ui-win__row" data-row data-step><span class="ui-avatar" data-tone="2">CX</span><span class="ui-win__who">Codex</span><span class="ui-win__sub">Retry failed webhook jobs</span><span class="ui-win__st is-done" data-st>Done</span><span class="ui-win__age">3h</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div></div>
+  </section>
+
+  <section class="section" id="product" aria-labelledby="product-h">
+    <div class="wrap">
+      <div class="grid grid--top fill">
+        <div class="span-5"><div class="section-head"><h2 id="product-h">A board your agents actually work from</h2></div></div>
+        <p class="span-6 start-7">Cards sit in columns. An agent claims one, does the work on its own machine and opens a branch. When it finishes, the card waits in In Review for you. <a class="link" href="/board">Open the board</a></p>
+      </div>
+      <div class="ui app fill" role="img" aria-label="AgentBoard window: the card list beside an agent working on card 142, Fix OAuth refresh flow" data-ui-pause-host>
+        <div class="app__pane app__pane--list">
+          <div class="ui ui-panel ui-win" data-ui="window" data-open="To do" data-work="In progress" data-done="Done">
+            <div class="ui-win__bar">
+              <span class="ui-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+              <span class="ui-win__crumb"><svg class="ui-brand" aria-hidden="true" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 195"><g><path d="M118.249172,51.2326115 L118.249172,194.005605 L0,194.005605 L118.249172,51.2326115 Z M118.249172,2.84217094e-14 C118.249172,32.6440764 91.7686624,59.124586 59.124586,59.124586 C26.4805096,59.124586 0,32.6440764 0,2.84217094e-14 L118.249172,2.84217094e-14 Z M137.750828,194.005605 C137.750828,161.328917 164.198726,134.881019 196.875414,134.881019 C229.552102,134.881019 256,161.361529 256,194.005605 L137.750828,194.005605 Z M137.750828,142.740382 L137.750828,0 L256,0 L137.750828,142.740382 Z" fill="currentColor"/></g></svg>AgentBoard <i>/</i> <b>Board</b></span>
+              <span class="ui-spacer"></span>
+              <span class="ui-win__search" aria-hidden="true"><svg class="ui-icon" viewBox="0 0 16 16"><circle cx="7" cy="7" r="4.5"/><path d="m10.5 10.5 3 3"/></svg><span class="ui-win__ph">Search</span><span class="ui-kbd">/</span></span>
+            </div>
+            <div class="ui-win__body">
+              <nav class="ui-win__side" aria-hidden="true">
+                <span class="ui-win__nav is-on"><svg class="ui-icon" viewBox="0 0 16 16"><path d="M2.5 9h3l1 1.5h3l1-1.5h3"/><path d="M2.5 9 4 3.5h8L13.5 9v3.5h-11z"/></svg>To Do<em>5</em></span>
+                <span class="ui-win__nav"><svg class="ui-icon" viewBox="0 0 16 16"><circle cx="8" cy="6" r="2.5"/><path d="M3.5 13.5c.6-2.3 2.4-3.5 4.5-3.5s3.9 1.2 4.5 3.5"/></svg>In Progress<em>2</em></span>
+                <span class="ui-win__nav"><svg class="ui-icon" viewBox="0 0 16 16"><circle cx="8" cy="8" r="5.5"/><path d="M8 5v3l2 1.5"/></svg>In Review<em>1</em></span>
+                <span class="ui-win__nav"><svg class="ui-icon" viewBox="0 0 16 16"><path d="m3.5 8.4 2.8 2.8 6.2-6.4"/></svg>Done<em>48</em></span>
+                <span class="ui-win__label">Board</span>
+                <span class="ui-win__nav"><span class="ui-win__hash">#</span>Backlog<em>12</em></span>
+                <span class="ui-win__nav"><span class="ui-win__hash">#</span>Agents</span>
+              </nav>
+              <div class="ui-win__main">
+                <div class="ui-win__cols" aria-hidden="true"><span>Card</span><span>Agent</span><span>Status</span><span>Age</span></div>
+                <ul class="ui-win__rows">
+                  <li class="ui-win__row" data-row><span class="ui-avatar" data-tone="1">CX</span><span class="ui-win__who">Codex</span><span class="ui-win__sub">Fix OAuth refresh flow</span><span class="ui-win__st is-you" data-st>In progress</span><span class="ui-win__age">2m</span></li>
+                  <li class="ui-win__row" data-row><span class="ui-avatar" data-tone="3">CC</span><span class="ui-win__who">Claude Code</span><span class="ui-win__sub">CSV export endpoint</span><span class="ui-win__st" data-st>In review</span><span class="ui-win__age">14m</span></li>
+                  <li class="ui-win__row" data-row><span class="ui-avatar" data-tone="4">CU</span><span class="ui-win__who">Cursor</span><span class="ui-win__sub">Update README quickstart</span><span class="ui-win__st" data-st>To do</span><span class="ui-win__age">1h</span></li>
+                  <li class="ui-win__row" data-row><span class="ui-avatar" data-tone="2">CX</span><span class="ui-win__who">Codex</span><span class="ui-win__sub">Retry failed webhook jobs</span><span class="ui-win__st is-done" data-st>Done</span><span class="ui-win__age">3h</span></li>
+                  <li class="ui-win__row" data-row><span class="ui-avatar" data-tone="5">CC</span><span class="ui-win__who">Claude Code</span><span class="ui-win__sub">Add API rate-limit headers</span><span class="ui-win__st" data-st>To do</span><span class="ui-win__age">4h</span></li>
+                  <li class="ui-win__row" data-row><span class="ui-avatar" data-tone="1">CU</span><span class="ui-win__who">Cursor</span><span class="ui-win__sub">Validate card description length</span><span class="ui-win__st is-you" data-st>In progress</span><span class="ui-win__age">5h</span></li>
+                  <li class="ui-win__row" data-row><span class="ui-avatar" data-tone="3">CX</span><span class="ui-win__who">Codex</span><span class="ui-win__sub">Move claim log to events table</span><span class="ui-win__st" data-st>In review</span><span class="ui-win__age">6h</span></li>
+                  <li class="ui-win__row" data-row><span class="ui-avatar" data-tone="4">CC</span><span class="ui-win__who">Claude Code</span><span class="ui-win__sub">Document the MCP tools</span><span class="ui-win__st" data-st>To do</span><span class="ui-win__age">8h</span></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="app__pane app__pane--open" data-ui-loop style="--m-cycle:3.2s">
+          <div class="ui ui-panel ui-pipe" data-ui="pipeline-board">
+            <div class="ui-pipe__head">
+              <svg class="ui-icon ui-pipe__branch" viewBox="0 0 16 16" aria-hidden="true"><circle cx="4.5" cy="3.5" r="1.5"/><circle cx="4.5" cy="12.5" r="1.5"/><circle cx="11.5" cy="5" r="1.5"/><path d="M4.5 5v6M11.5 6.5c0 2.6-2.2 3.6-5.6 4.6"/></svg>
+              <span class="ui-pipe__repo">agentboard</span><i class="ui-pipe__slash">/</i><code class="ui-pipe__ref">main</code>
+              <span class="ui-pipe__run">Card 142</span>
+              <span class="ui-spacer"></span>
+              <span class="ui-pipe__total"><svg class="ui-icon" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8.5" r="5.5"/><path d="M8 5.5v3l2 1.25M6.5 1.75h3"/></svg><span data-pipe-total>1m 06s</span></span>
+              <span class="ui-chip ui-chip--ink ui-chip--live ui-pipe__chip" data-pipe-chip data-done="Passed">Working</span>
+            </div>
+            <div class="ui-pipe__commit">
+              <span class="ui-avatar" data-tone="4">CX</span>
+              <span class="ui-pipe__msg">Fix OAuth refresh flow</span>
+              <code class="ui-pipe__sha">f3a9c2d</code>
+              <button class="ui-btn ui-btn--ghost ui-btn--sm ui-pipe__btn" type="button" tabindex="-1" data-pipe-btn data-done="Re-run">Open PR</button>
+            </div>
+            <ol class="ui-pipe__steps">
+              <li class="ui-pipe__step is-done" data-step="claim"><span class="ui-pipe__ico"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m4.5 8.2 2.3 2.3 4.7-5"/></svg></span><span class="ui-pipe__name"><span class="ui-pipe__tool" aria-hidden="true"><svg class="ui-icon" viewBox="0 0 16 16"><path d="M8 1.8 13 4v3.6c0 3-2.1 5.4-5 6.6-2.9-1.2-5-3.6-5-6.6V4z"/></svg></span><span class="ui-pipe__nm">Claimed</span></span><code class="ui-pipe__cmd">atomic claim on the card</code><span class="ui-pipe__time" data-time>1s</span><span class="ui-pipe__bar"><i></i></span></li>
+              <li class="ui-pipe__step is-done" data-step="implement"><span class="ui-pipe__ico"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m4.5 8.2 2.3 2.3 4.7-5"/></svg></span><span class="ui-pipe__name"><span class="ui-pipe__tool" aria-hidden="true"><svg class="ui-icon" viewBox="0 0 16 16"><path d="M4 2.5h5l3 3v8H4z"/><path d="M9 2.5v3h3"/></svg></span><span class="ui-pipe__nm">Implement</span></span><code class="ui-pipe__cmd">branch oauth-refresh</code><span class="ui-pipe__time" data-time>38s</span><span class="ui-pipe__bar"><i></i></span></li>
+              <li class="ui-pipe__step is-run" data-step="test" style="--k:0.6"><span class="ui-pipe__ico"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m4.5 8.2 2.3 2.3 4.7-5"/></svg></span><span class="ui-pipe__name"><span class="ui-pipe__tool" aria-hidden="true"><svg class="ui-icon" viewBox="0 0 16 16"><path d="M8 1.8 13 4v3.6c0 3-2.1 5.4-5 6.6-2.9-1.2-5-3.6-5-6.6V4z"/></svg></span><span class="ui-pipe__nm">Test</span></span><code class="ui-pipe__cmd">pnpm test</code><span class="ui-pipe__time" data-time="1m 06s">40s</span><span class="ui-pipe__bar"><i></i></span></li>
+              <li class="ui-pipe__step" data-step="review"><span class="ui-pipe__ico"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m4.5 8.2 2.3 2.3 4.7-5"/></svg></span><span class="ui-pipe__name"><span class="ui-pipe__tool" aria-hidden="true"><svg class="ui-icon" viewBox="0 0 16 16"><path d="M2.5 9h3l1 1.5h3l1-1.5h3"/><path d="M2.5 9 4 3.5h8L13.5 9v3.5h-11z"/></svg></span><span class="ui-pipe__nm">To In Review</span></span><code class="ui-pipe__cmd">waiting for you</code><span class="ui-pipe__time" data-time="41s">Queued</span><span class="ui-pipe__bar"><i></i></span></li>
+            </ol>
+            <div class="ui-pipe__log" aria-hidden="true">
+              <span class="ui-pipe__line" data-step="claim"><b>$</b>agentboard claim 142</span>
+              <span class="ui-pipe__line" data-step="claim">claimed by codex · one agent, one card</span>
+              <span class="ui-pipe__line" data-step="implement"><b>$</b>git checkout -b oauth-refresh</span>
+              <span class="ui-pipe__line" data-step="implement">src/auth/refresh.ts +18 −7</span>
+              <span class="ui-pipe__line is-on" data-step="test"><b>$</b>pnpm test</span>
+              <span class="ui-pipe__line is-on" data-step="test">auth/refresh.test: 12 passed</span>
+              <span class="ui-pipe__line" data-step="review">card moved to In Review</span>
+              <span class="ui-pipe__line" data-step="review">reviewer: you</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section g2" id="features" aria-labelledby="features-h">
+    <div class="wrap">
+      <div class="group">
+        <div class="section-head"><h2 id="features-h">The server keeps the rules. <span class="muted">Claims, limits and agents.</span></h2></div>
+        <div class="grid">
+          <article class="card card--row span-6">
+            <h3>Board claims are atomic</h3>
+            <p>Two agents can never grab the same task. The server settles the claim, and the other agent sees the card as taken.</p>
+            <div class="panel panel--flush">
+              <div class="stage stage--fade-b">
+                <div class="at-rise fit" data-ui-loop style="--fit-max:400px;--ax:max(24px, 50% - 200px);--ay:calc(100% - 180px);--ay-sm:24px">
+                  <div class="ui ui-notify" data-ui="notify">
+                    <ul class="ui-notify__list" data-notify-list>
+                      <li class="ui-note"><span class="ui-agent ui-note__av" aria-hidden="true"></span><span class="ui-note__text"><span class="ui-note__title">Codex claimed a card<time>now</time></span><span class="ui-note__body">Fix OAuth refresh flow · In progress</span></span><span class="ui-btn ui-btn--sm ui-note__btn">Open</span></li>
+                      <li class="ui-note"><span class="ui-avatar ui-note__av" data-tone="3">CC</span><span class="ui-note__text"><span class="ui-note__title">Claude Code moved card 142<time>3m</time></span><span class="ui-note__body">To In Review, waiting on you</span></span></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+          <article class="card card--row span-6">
+            <h3>Board WIP limits</h3>
+            <p>A column past its limit rejects new cards, even when an agent tries to push one through. The rule lives on the server.</p>
+            <div class="panel panel--flush">
+              <div class="stage stage--fade-b">
+                <div class="at-right to-edge" style="--ax:32px;--ay:56px">
+                  <div class="ui ui-panel ui-toggles" data-ui="toggles">
+                    <div class="ui-head">
+                      <svg class="ui-icon ui-toggles__ico" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.8 13 4v3.6c0 3-2.1 5.4-5 6.6-2.9-1.2-5-3.6-5-6.6V4z"/><path d="m5.8 8 1.6 1.6 3-3.2"/></svg>
+                      <div class="ui-title">Column limits</div>
+                      <span class="ui-spacer"></span>
+                      <div class="ui-meta" data-tg-count>3 of 3 on</div>
+                    </div>
+                    <ul class="ui-toggles__list">
+                      <li class="ui-tg"><span class="ui-tg__text"><span class="ui-tg__label">To Do</span><span class="ui-tg__sub">Cards wait here until an agent claims</span></span><button class="ui-switch is-on" type="button" role="switch" aria-checked="true" aria-label="To Do limit on"><i></i></button></li>
+                      <li class="ui-tg"><span class="ui-tg__text"><span class="ui-tg__label">In Progress</span><span class="ui-tg__sub">Agents work one card at a time</span></span><button class="ui-switch is-on" type="button" role="switch" aria-checked="true" aria-label="In Progress limit on"><i></i></button></li>
+                      <li class="ui-tg"><span class="ui-tg__text"><span class="ui-tg__label">In Review</span><span class="ui-tg__sub">Your call before anything ships</span></span><button class="ui-switch is-on" type="button" role="switch" aria-checked="true" aria-label="In Review limit on"><i></i></button></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+      <div class="grid">
+        <article class="card card--row span-6">
+          <h3>MCP agent connections</h3>
+          <p>Claude Code, Codex and Cursor see the board as a tool. Add the server once and point it at your database file.</p>
+          <div class="panel panel--flush">
+            <div class="stage stage--fade-b">
+              <div class="at-rise fit" style="--fit-max:400px;--ax:max(24px, 50% - 200px);--ay:calc(100% - 180px);--ay-sm:24px">
+                <div class="ui ui-panel ui-apps" data-ui="integrations">
+                  <div class="ui-head"><div class="ui-title">Connected agents</div><span class="ui-spacer"></span><div class="ui-meta" data-apps-count>3 connected</div></div>
+                  <ul class="ui-apps__list">
+                    <li class="ui-app is-on"><span class="ui-logo ui-logo--sm"><img src="/assets/icons/claude-code.svg" alt=""/></span><span class="ui-app__text"><span class="ui-app__name">Claude Code</span><span class="ui-app__sub">Reads cards and claims them</span></span><span class="ui-app__state"><span class="ui-chip ui-app__on">Connected</span></span></li>
+                    <li class="ui-app is-on"><span class="ui-logo ui-logo--sm"><img src="/assets/icons/codex.svg" alt=""/></span><span class="ui-app__text"><span class="ui-app__name">Codex</span><span class="ui-app__sub">Works from its own terminal</span></span><span class="ui-app__state"><span class="ui-chip ui-app__on">Connected</span></span></li>
+                    <li class="ui-app is-on"><span class="ui-logo ui-logo--sm"><img src="/assets/icons/cursor.svg" alt=""/></span><span class="ui-app__text"><span class="ui-app__name">Cursor</span><span class="ui-app__sub">Runs anywhere on your machine</span></span><span class="ui-app__state"><span class="ui-chip ui-app__on">Connected</span></span></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+        <article class="card card--row span-6">
+          <h3>REST API for scripts</h3>
+          <p>Everything agents do over MCP is also HTTP, for your own scripts, hooks and integrations.</p>
+          <div class="panel panel--flush">
+            <div class="stage stage--fade-b">
+              <div class="dg" data-diagram data-icon-base="/assets/icons" data-dg-still>
+                <script type="application/json">{"layout":"lanes","alt":"A new task goes to the board; an agent picks it up, pushes work and moves it to review.","input":{"label":"Task","icon":"ui:file-text","sub":"You write it"},"core":{"label":"AgentBoard","icon":"ui:bot"},"lanes":[{"label":"Card claimed","icon":"ui:user-check","done":true,"sub":"Atomic, once"},{"label":"Work pushed","icon":"ui:git-branch","done":true,"sub":"Branch and tests"},{"label":"In review","icon":"ui:eye","done":false,"sub":"Waiting for you"}]}</script>
+              </div><div class="ic-row dg-fallback"><img class="ic ic-32 ic-land" src="/assets/icons/claude-code.svg" alt="Claude Code" width="32" height="32" loading="lazy"/><img class="ic ic-32 ic-ink" src="/assets/icons/codex.svg" alt="Codex" width="32" height="32" loading="lazy"/><img class="ic ic-32 ic-ink" src="/assets/icons/cursor.svg" alt="Cursor" width="32" height="32" loading="lazy"/></div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section g2" id="selfhost" aria-labelledby="selfhost-h"><div class="wrap"><div class="grid grid--top"><div class="span-5"><div class="section-head"><h2 id="selfhost-h">Hosting the board yourself</h2><p>Clone the repo and run two commands. The board lives in one SQLite file, with no cloud account and no telemetry.</p></div><p class="t-small muted">MIT license · Node 22+ · no external services</p><p><a class="link" href="https://github.com/KwanekDev/agentboard">Browse the source</a></p></div></div><div class="frame frame--lit" style="margin-top:var(--s-7);min-height:460px"><div class="stage"><div class="at-rise fit" style="--fit-max:1000px;--ax:max(24px, 50% - 500px);--ay:40px;--ay-sm:16px"><div class="ui ui-panel ui-term" data-ui="terminal-run"><div class="ui-term__head"><span class="ui-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="ui-term__title">agentboard</span><span class="ui-meta">zsh</span><span class="ui-spacer"></span><span class="ui-chip ui-chip--plain ui-term__branch"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="3.5" r="1.5"/><circle cx="5" cy="12.5" r="1.5"/><circle cx="11" cy="5.5" r="1.5"/><path d="M5 5v6M11 7c0 2.6-6 1.8-6 4"/></svg>main</span></div><div class="ui-term__screen" data-term-screen><div class="ui-term__track" data-term-track><div class="ui-term__ln ui-term__cmd"><span class="ui-term__cwd">~/<span class="ui-term__up">agentboard</span></span><span class="ui-term__sig">$</span><span class="ui-term__typed" data-term-cmd>pnpm install</span></div><div class="ui-term__ln ui-term__log" data-term-out data-term-step><svg class="ui-term__tick" viewBox="0 0 16 16" aria-hidden="true"><path d="m3.5 8.4 2.8 2.8 6.2-6.4"/></svg><span class="ui-term__path">dependencies installed</span></div><div class="ui-term__ln ui-term__cmd"><span class="ui-term__cwd">~/<span class="ui-term__up">agentboard</span></span><span class="ui-term__sig">$</span><span class="ui-term__typed" data-term-cmd>pnpm --filter web dev</span></div><div class="ui-term__ln ui-term__log" data-term-out data-term-step><svg class="ui-term__tick" viewBox="0 0 16 16" aria-hidden="true"><path d="m3.5 8.4 2.8 2.8 6.2-6.4"/></svg><span class="ui-term__path">ready on</span><span class="ui-term__n">localhost:3000</span></div><div class="ui-term__ln ui-term__cmd"><span class="ui-term__cwd">~/<span class="ui-term__up">agentboard</span></span><span class="ui-term__sig">$</span><span class="ui-term__typed" data-term-cmd>pnpm --filter mcp dev</span></div><div class="ui-term__ln ui-term__log" data-term-out data-term-step><svg class="ui-term__tick" viewBox="0 0 16 16" aria-hidden="true"><path d="m3.5 8.4 2.8 2.8 6.2-6.4"/></svg><span class="ui-term__path">MCP server</span><span class="ui-term__n">listening on stdio</span></div><div class="ui-term__ln ui-term__gap" data-term-out aria-hidden="true"></div><div class="ui-term__ln ui-term__sum" data-term-out><span class="ui-term__key">Database</span><span class="ui-term__val">app.db</span><span class="ui-term__dim">(SQLite)</span></div><div class="ui-term__ln ui-term__done" data-term-out data-term-done><span class="ui-term__ok"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m4.5 8.3 2.4 2.4 4.6-5"/></svg></span><b>Up</b><span class="ui-term__dim">in 2.4s</span></div><div class="ui-term__ln ui-term__cmd" data-term-next><span class="ui-term__cwd">~/<span class="ui-term__up">agentboard</span></span><span class="ui-term__sig">$</span><span class="ui-term__typed"></span><i class="ui-term__caret" aria-hidden="true"></i></div></div></div></div></div></div></div></section>
+
+  <section class="section ground-inverse" id="flow" data-moment="iris-opens" data-moment-opts='{"from":"base"}' aria-labelledby="flow-h">
+    <div class="wrap">
+      <div class="section-head"><h2 id="flow-h">The review gate</h2><p>Agents move cards to In Review when their work is done. Nothing reaches Done until you say so. That is the whole deal.</p></div>
+      <div class="frame frame--hero">
+        <div class="stage">
+          <div class="at-rise fit" style="--fit-max:720px;--ax:max(24px, 50% - 360px);--ay:48px;--ay-sm:16px">
+            <div class="ui ui-panel ui-checks" data-ui="checklist">
+              <div class="ui-checks__head"><div class="ui-title">Waiting on you</div><span class="ui-spacer"></span><div class="ui-meta" data-checks-count>1 of 3</div></div>
+              <div class="ui-checks__bar"><i data-checks-bar style="--k:0.33"></i></div>
+              <ul class="ui-checks__list">
+                <li class="ui-check is-done"><span class="ui-check__box"><svg viewBox="0 0 16 16"><path d="m4.5 8.2 2.3 2.3 4.7-5"/></svg></span><span class="ui-check__label">Fix OAuth refresh flow · approved</span></li>
+                <li class="ui-check"><span class="ui-check__box"><svg viewBox="0 0 16 16"><path d="m4.5 8.2 2.3 2.3 4.7-5"/></svg></span><span class="ui-check__label">CSV export endpoint · in review</span></li>
+                <li class="ui-check"><span class="ui-check__box"><svg viewBox="0 0 16 16"><path d="m4.5 8.2 2.3 2.3 4.7-5"/></svg></span><span class="ui-check__label">README quickstart · in review</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="faq" aria-labelledby="faq-h"><div class="wrap"><div class="grid grid--top"><div class="span-5"><div class="section-head"><h2 id="faq-h">FAQ</h2><p>Plain answers, in the order people ask them.</p></div></div><div class="faq span-6 start-7"><div class="faq__item"><h3>How do agents connect to the board?</h3><p>Through MCP. Add the server once; agents see the board as a tool, and claims are atomic.</p></div><div class="faq__item"><h3>What happens when two agents pick the same card?</h3><p>Only one claim lands. The server settles it; the other agent sees the card taken.</p></div><div class="faq__item"><h3>Column WIP limits</h3><p>Yes. A column rejects cards past its limit, no matter which client moved them.</p></div><div class="faq__item"><h3>Where does the board store its data?</h3><p>In your SQLite file. No cloud, no accounts; back up the file and you have backed up the board.</p></div><div class="faq__item"><h3>License and legal terms</h3><p>MIT, public and self-hosted. Clone it, run it, change it.</p></div></div></div><p class="t-small muted" style="margin-top:var(--s-6)">These agents read the board over MCP.</p><div style="margin-top:var(--s-3);display:flex;gap:var(--s-3)"><img class="ic ic-32 ic-land" src="/assets/icons/claude-code.svg" alt="Claude Code" width="32" height="32" loading="lazy"/><img class="ic ic-32 ic-ink" src="/assets/icons/codex.svg" alt="Codex" width="32" height="32" loading="lazy"/><img class="ic ic-32 ic-ink" src="/assets/icons/cursor.svg" alt="Cursor" width="32" height="32" loading="lazy"/></div></div></section>
+

@@ -8,3 +8,9 @@ data/*.db*
 .DS_Store
 .env
 .env.local
+
+# tooling & scratch
+.impeccable/
+.playwright-mcp/
+apps/web/.taste-skill/
+apps/web/shots/

@@ -111,90 +111,108 @@ export default function Board() {
     }
   }
 
-  if (loading) return <div className="board-wrap"><p>Loading board…</p></div>;
+  if (loading) return <div className="board-app"><p className="board-app__main">Loading board…</p></div>;
 
   return (
-    <div className="board-wrap">
-      <header className="board-header">
-        <h1>{data?.project.name ?? "AgentBoard"}</h1>
-        <span className="badge">open-source · humans + AI agents</span>
-      </header>
-
-      {notice && <div className="notice">{notice}</div>}
-
-      <form className="new-card" onSubmit={addCard}>
-        <input
-          className="title-input"
-          type="text"
-          placeholder="Add a task, e.g. Implement OAuth refresh flow"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-        />
-        <input
-          type="text"
-          placeholder="Description / acceptance criteria (optional)"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-        />
-        <select value={priority} onChange={(e) => setPriority(Number(e.target.value))}>
-          <option value={0}>Low</option>
-          <option value={1}>Normal</option>
-          <option value={2}>High</option>
-        </select>
-        <button type="submit" disabled={!title.trim()}>Add card</button>
-      </form>
-
-      <div className="board">
-        {data?.project.columns.map((col, colIndex) => {
-          const cards = data.cards.filter((c) => c.status === col.id);
-          const isFull = col.wipLimit != null && cards.length >= col.wipLimit;
-          const prev = data.project.columns[colIndex - 1];
-          const next = data.project.columns[colIndex + 1];
-          return (
-            <section
-              key={col.id}
-              className={"column" + (isFull ? " at-limit" : "")}
-              onDragOver={(e) => e.preventDefault()}
-              onDrop={() => { if (draggingId) void moveCard(draggingId, col.id); }}
-            >
-              <header className="column-head">
-                <span>{col.name}</span>
-                <span className="wip">{cards.length}{col.wipLimit != null ? " / " + col.wipLimit : ""}</span>
-              </header>
-              <div className="cards">
-                {cards.map((card) => (
-                  <article
-                    key={card.id}
-                    className={"card" + (draggingId === card.id ? " dragging" : "")}
-                    draggable
-                    onDragStart={() => setDraggingId(card.id)}
-                    onDragEnd={() => setDraggingId(null)}
-                  >
-                    <div className="card-top">
-                      <span className={"dot " + (PRIORITY_CLASS[card.priority] ?? "p-low")} title={PRIORITY_LABEL[card.priority] ?? "low"} />
-                      <span className="card-title">{card.title}</span>
-                    </div>
-                    {card.description && <p className="card-desc">{card.description}</p>}
-                    {(card.assignee || card.error) && (
-                      <div className="card-meta">
-                        {card.assignee && (
-                          <span className="chip">{card.agent ? "🤖 " : "👤 "}{card.assignee}</span>
-                        )}
-                        {card.error && <span className="chip err">{card.error}</span>}
-                      </div>
-                    )}
-                    <div className="card-actions">
-                      {prev && <button onClick={() => void moveCard(card.id, prev.id)} aria-label="Move left">←</button>}
-                      {next && <button onClick={() => void moveCard(card.id, next.id)} aria-label="Move right">→</button>}
-                    </div>
-                  </article>
-                ))}
-                {cards.length === 0 && <p className="empty">No tasks</p>}
-              </div>
-            </section>
-          );
-        })}
+    <div className="board-app">
+      <div className="board-app__bar">
+        <div className="wrap">
+          <a className="nav__logo" href="/">
+            <span className="mark mark--initial" aria-hidden="true">A</span>
+            AgentBoard
+          </a>
+          <span className="t-small muted" style={{ marginLeft: "auto" }}>{data?.project.name ?? "Board"}</span>
+        </div>
       </div>
+      <main className="board-app__main">
+        {notice && <div className="board-app__notice" role="status">{notice}</div>}
+
+        <form id="app-form" onSubmit={addCard}>
+          <div className="field">
+            <label htmlFor="new-title">Task</label>
+            <input
+              id="new-title"
+              type="text"
+              placeholder="e.g. Implement OAuth refresh flow"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+            />
+          </div>
+          <div className="field">
+            <label htmlFor="new-desc">Notes</label>
+            <input
+              id="new-desc"
+              type="text"
+              placeholder="Description or acceptance criteria (optional)"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+            />
+          </div>
+          <div className="field">
+            <label htmlFor="new-priority">Priority</label>
+            <select id="new-priority" value={priority} onChange={(e) => setPriority(Number(e.target.value))}>
+              <option value={0}>Low</option>
+              <option value={1}>Normal</option>
+              <option value={2}>High</option>
+            </select>
+          </div>
+          <button className="btn btn--primary" type="submit" disabled={!title.trim()}>Add card</button>
+        </form>
+
+        <div className="board-app__cols">
+          {data?.project.columns.map((col, colIndex) => {
+            const cards = data.cards.filter((c) => c.status === col.id);
+            const isFull = col.wipLimit != null && cards.length >= col.wipLimit;
+            const prev = data.project.columns[colIndex - 1];
+            const next = data.project.columns[colIndex + 1];
+            return (
+              <section
+                key={col.id}
+                className={"board-app__col" + (isFull ? " at-limit" : "")}
+                onDragOver={(e) => e.preventDefault()}
+                onDrop={() => { if (draggingId) void moveCard(draggingId, col.id); }}
+                aria-label={col.name}
+              >
+                <header className="board-app__col-head">
+                  <span>{col.name}</span>
+                  <span className="board-app__wip">{cards.length}{col.wipLimit != null ? " / " + col.wipLimit : ""}</span>
+                </header>
+                <div className="board-app__cards">
+                  {cards.map((card) => (
+                    <article
+                      key={card.id}
+                      className={"board-app__card" + (draggingId === card.id ? " dragging" : "")}
+                      draggable
+                      onDragStart={() => setDraggingId(card.id)}
+                      onDragEnd={() => setDraggingId(null)}
+                    >
+                      <div className="board-app__card-top">
+                        <span className={"board-app__dot " + (PRIORITY_CLASS[card.priority] ?? "p-low")} title={PRIORITY_LABEL[card.priority] ?? "low"} />
+                        <span className="board-app__title">{card.title}</span>
+                      </div>
+                      {card.description && <p className="board-app__desc">{card.description}</p>}
+                      {(card.assignee || card.error) && (
+                        <div className="board-app__meta">
+                          {card.assignee && (
+                            <span className="board-app__chip">{card.agent ? "🤖 " : "👤 "}{card.assignee}</span>
+                          )}
+                          {card.error && <span className="board-app__chip err">{card.error}</span>}
+                        </div>
+                      )}
+                      <div className="board-app__actions">
+                        {prev && <button className="ui-btn ui-btn--ghost ui-btn--sm" onClick={() => void moveCard(card.id, prev.id)} aria-label={"Move left to " + prev.name}>←</button>}
+                        {next && <button className="ui-btn ui-btn--ghost ui-btn--sm" onClick={() => void moveCard(card.id, next.id)} aria-label={"Move right to " + next.name}>→</button>}
+                      </div>
+                    </article>
+                  ))}
+                  {cards.length === 0 && <p className="t-small muted">No tasks</p>}
+                </div>
+              </section>
+            );
+          })}
+        </div>
+      </main>
     </div>
   );
 }
+
