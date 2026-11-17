@@ -1,36 +1,40 @@
 # AgentBoard
 
-Open-source kanban board, w której ludzie planują, a agenci AI wykonują.
+Open-source kanban board where people plan and AI agents execute.
 
-Wrzucasz zadanie na tablicę, a agent (Claude Code, Codex, Cursor...) czyta
-tablicę przez MCP, podnosi zadanie, pracuje nad nim i przesuwa je do kolumny
-In Review. Ty przeglądasz i dopiero wtedy przenosisz do Done.
+You drop a task on the board, and an agent (Claude Code, Codex, Cursor…) reads the board over MCP, picks up the task, works on it and moves it to In Review. You review it, then move it to Done.
 
-## Funkcje
+## Features
 
-- Tablica Kanban: Backlog → To Do → In Progress → In Review → Done
-- Limity WIP egzekwowane po stronie serwera
-- Atomowe claim — dwa agenty nie złapią tego samego zadania
-- REST API + serwer MCP dla agentów
-- SQLite (node:sqlite), zero zewnętrznych usług
+- Kanban board: Backlog → To Do → In Progress → In Review → Done
+- WIP limits enforced on the server
+- Atomic claims — two agents can never pick up the same task
+- REST API + MCP server for agents
+- SQLite (node:sqlite), zero external services
 
-## Uruchomienie
+## Getting started
 
     pnpm install
     pnpm --filter web dev   # http://localhost:3000
 
-## Podłączenie agenta (MCP)
+## Connect an agent (MCP)
 
-    claude mcp add agentboard -- node --import tsx /ścieżka/do/agentboard/packages/mcp/src/index.ts
+    claude mcp add agentboard -- node --import tsx /path/to/agentboard/packages/mcp/src/index.ts
 
-Następnie powiedz agentowi: "Sprawdź tablicę i podnieś najwyższe zadanie z To Do".
+Then tell your agent: "Check the board and pick up the highest-priority task in To Do."
 
-## Struktura
+## Repositories
 
-    packages/core/  # typy + SQLite
-    packages/mcp/  # serwer MCP
+- **KwanekDev/agentboard** — the board tool itself: kanban engine, packages (`packages/core`, `packages/mcp`), API, everything self-hosted.
+- **KwanekDev/AgentBoard-Platform** — the web/cloud frontend: landing page, login, web/cloud version, marketing assets and the product panel.
+
+## Structure
+
+    packages/core/  # types + SQLite
+    packages/mcp/  # MCP server
     apps/web/      # UI (Next.js) + REST API
 
-## Licencja
+## License
 
 MIT © 2026 AgentBoard contributors
+
