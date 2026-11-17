@@ -1,0 +1,16 @@
+{
+  "name": "agentboard",
+  "version": "0.1.0",
+  "private": true,
+  "description": "AgentBoard — open-source AI kanban board: drop a task, let a coding agent (Claude Code, Codex, Cursor…) pick it up via MCP.",
+  "license": "MIT",
+  "scripts": {
+    "dev": "pnpm -r --parallel dev",
+    "build": "pnpm -r build",
+    "typecheck": "pnpm -r typecheck"
+  },
+  "packageManager": "pnpm@10.33.4",
+  "engines": {
+    "node": ">=22.5.0"
+  }
+}
