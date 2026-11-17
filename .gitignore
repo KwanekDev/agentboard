@@ -14,3 +14,4 @@ data/*.db*
 .playwright-mcp/
 apps/web/.taste-skill/
 apps/web/shots/
+apps/web/.next-old/
