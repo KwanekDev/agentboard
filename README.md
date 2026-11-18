@@ -23,6 +23,20 @@ You drop a task on the board, and an agent (Claude Code, Codex, Cursor…) reads
 
 Then tell your agent: "Check the board and pick up the highest-priority task in To Do."
 
+
+
+## REST API
+
+The web app exposes a REST API under `/api` (projects, cards, claims). By default it is open — run it only on a trusted, isolated network.
+
+To require a bearer token, start the app with `AGENTBOARD_API_TOKEN` set:
+
+    AGENTBOARD_API_TOKEN=<long-random-string> pnpm --filter web dev
+
+Every `/api/*` request must then send:
+
+    Authorization: Bearer <long-random-string>
+
 ## Repositories
 
 - **KwanekDev/agentboard** — the board tool itself: kanban engine, packages (`packages/core`, `packages/mcp`), API, everything self-hosted.
@@ -37,4 +51,5 @@ Then tell your agent: "Check the board and pick up the highest-priority task in 
 ## License
 
 MIT © 2026 AgentBoard contributors
+
 

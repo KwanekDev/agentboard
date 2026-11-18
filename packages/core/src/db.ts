@@ -157,45 +157,122 @@ export function updateCard(taskId: string, patch: CardUpdate): MoveResult {
   return { ok: true, card: getCard(taskId) as Card };
 }
 
+// Runs fn inside an immediate write transaction; commits on success, rolls back on error result or throw.
+function inTx(db: DatabaseSync, fn: () => MoveResult): MoveResult {
+  db.exec("BEGIN IMMEDIATE");
+  try {
+    const r = fn();
+    if (r.ok) db.exec("COMMIT");
+    else db.exec("ROLLBACK");
+    return r;
+  } catch (e) {
+    db.exec("ROLLBACK");
+    throw e;
+  }
+}
+
 export function moveCard(taskId: string, status: string): MoveResult {
   const db = getDb();
-  const cardRow = db.prepare("SELECT * FROM cards WHERE id = ?").get(taskId) as CardRow | undefined;
-  if (!cardRow) return { ok: false, error: "task not found" };
-  const projectRow = db.prepare("SELECT * FROM projects WHERE id = ?").get(cardRow.project_id) as unknown as ProjectRow;
-  const columns = parseColumns(projectRow.columns);
-  const col = columns.find((c) => c.id === status);
-  if (!col) return { ok: false, error: 'unknown column "' + status + '"' };
-  if (cardRow.status === status) return { ok: true, card: toCard(cardRow) };
-  if (col.wipLimit != null) {
-    const count = (db.prepare("SELECT COUNT(*) AS n FROM cards WHERE project_id = ? AND status = ?")
-      .get(cardRow.project_id, status) as { n: number }).n;
-    if (count >= col.wipLimit) {
-      return { ok: false, error: 'WIP limit reached for "' + col.name + '" (' + col.wipLimit + ') — finish or move existing work first' };
+  return inTx(db, () => {
+    const cardRow = db.prepare("SELECT * FROM cards WHERE id = ?").get(taskId) as CardRow | undefined;
+    if (!cardRow) return { ok: false, error: "task not found" };
+    const projectRow = db.prepare("SELECT * FROM projects WHERE id = ?").get(cardRow.project_id) as unknown as ProjectRow;
+    const columns = parseColumns(projectRow.columns);
+    const col = columns.find((c) => c.id === status);
+    if (!col) return { ok: false, error: 'unknown column "' + status + '"' };
+    if (cardRow.status === status) return { ok: true, card: toCard(cardRow) };
+    if (col.wipLimit != null) {
+      const count = (db.prepare("SELECT COUNT(*) AS n FROM cards WHERE project_id = ? AND status = ?")
+        .get(cardRow.project_id, status) as { n: number }).n;
+      if (count >= col.wipLimit) {
+        return { ok: false, error: 'WIP limit reached for "' + col.name + '" (' + col.wipLimit + ') — finish or move existing work first' };
+      }
     }
-  }
-  const now = new Date().toISOString();
-  db.prepare("UPDATE cards SET status = ?, updated_at = ? WHERE id = ?").run(status, now, taskId);
-  return { ok: true, card: getCard(taskId) as Card };
+    const now = new Date().toISOString();
+    db.prepare("UPDATE cards SET status = ?, updated_at = ? WHERE id = ?").run(status, now, taskId);
+    return { ok: true, card: getCard(taskId) as Card };
+  });
 }
 
 export function claimCard(taskId: string, session: string, agent?: string | null): MoveResult {
   const db = getDb();
-  const now = new Date().toISOString();
-  const res = db.prepare(
-    "UPDATE cards SET status = 'in_progress', assignee = ?, agent = ?, updated_at = ? WHERE id = ? AND status IN ('todo','backlog')"
-  ).run(session, agent ?? null, now, taskId);
-  if (Number(res.changes) === 0) {
+  return inTx(db, () => {
     const card = getCard(taskId);
     if (!card) return { ok: false, error: "task not found" };
-    return { ok: false, error: "task is already claimed or not claimable (status: " + card.status + ")" };
-  }
-  return { ok: true, card: getCard(taskId) as Card };
+    if (card.status !== "todo" && card.status !== "backlog") {
+      return { ok: false, error: "task is already claimed or not claimable (status: " + card.status + ")" };
+    }
+    const projectRow = db.prepare("SELECT * FROM projects WHERE id = ?").get(card.projectId) as unknown as ProjectRow;
+    const columns = parseColumns(projectRow.columns);
+    const progressCol = columns.find((c) => c.id === "in_progress");
+    if (progressCol?.wipLimit != null) {
+      const count = (db.prepare("SELECT COUNT(*) AS n FROM cards WHERE project_id = ? AND status = 'in_progress'")
+        .get(card.projectId) as { n: number }).n;
+      if (count >= progressCol.wipLimit) {
+        return { ok: false, error: 'WIP limit reached for "' + progressCol.name + '" (' + progressCol.wipLimit + ') — finish or move existing work first' };
+      }
+    }
+    const now = new Date().toISOString();
+    db.prepare(
+      "UPDATE cards SET status = 'in_progress', assignee = ?, agent = ?, updated_at = ? WHERE id = ?"
+    ).run(session, agent ?? null, now, taskId);
+    return { ok: true, card: getCard(taskId) as Card };
+  });
 }
 
 export function releaseCard(taskId: string): MoveResult {
   const db = getDb();
-  const now = new Date().toISOString();
-  db.prepare("UPDATE cards SET status = 'todo', assignee = NULL, agent = NULL, error = NULL, updated_at = ? WHERE id = ?")
-    .run(now, taskId);
-  return { ok: true, card: getCard(taskId) as Card };
+  return inTx(db, () => {
+    const card = getCard(taskId);
+    if (!card) return { ok: false, error: "task not found" };
+    const now = new Date().toISOString();
+    db.prepare("UPDATE cards SET status = 'todo', assignee = NULL, agent = NULL, error = NULL, updated_at = ? WHERE id = ?")
+      .run(now, taskId);
+    return { ok: true, card: getCard(taskId) as Card };
+  });
 }
+
+
+export function closeDb(): void {
+  if (cached) {
+    try { cached.close(); } catch { /* ignore */ }
+    cached = null;
+  }
+}
+
+
+
+export function deleteCard(taskId: string): MoveResult {
+  const db = getDb();
+  const card = getCard(taskId);
+  if (!card) return { ok: false, error: "task not found" };
+  db.prepare("DELETE FROM cards WHERE id = ?").run(taskId);
+  return { ok: true };
+}
+
+
+
+export interface ProjectResult {
+  ok: boolean;
+  error?: string;
+  project?: Project;
+}
+
+export function renameProject(projectId: string, name: string): ProjectResult {
+  const db = getDb();
+  const project = getProject(projectId);
+  if (!project) return { ok: false, error: "project not found" };
+  const trimmed = String(name).trim();
+  if (!trimmed) return { ok: false, error: "name is required" };
+  db.prepare("UPDATE projects SET name = ? WHERE id = ?").run(trimmed, projectId);
+  return { ok: true, project: toProject(db.prepare("SELECT * FROM projects WHERE id = ?").get(projectId) as unknown as ProjectRow) };
+}
+
+export function deleteProject(projectId: string): ProjectResult {
+  const db = getDb();
+  const project = getProject(projectId);
+  if (!project) return { ok: false, error: "project not found" };
+  db.prepare("DELETE FROM projects WHERE id = ?").run(projectId);
+  return { ok: true };
+}
+
