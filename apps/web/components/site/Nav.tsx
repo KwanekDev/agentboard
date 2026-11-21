@@ -1,16 +1,13 @@
-export default function Nav({ active }: { active?: "board" | "landing" }) {
+export default function Nav({ active }: { active?: "board" }) {
   return (
     <header className="nav">
       <div className="wrap nav__bar">
         <a className="skip-link" href="#top">Skip to content</a>
-        <a className="nav__logo" href="/"><span className="mark mark--initial" aria-hidden="true">A</span>AgentBoard</a>
+        <a className="nav__logo" href="/board"><span className="mark mark--initial" aria-hidden="true">A</span>AgentBoard</a>
         <nav className="nav__links" aria-label="Main">
           <div className="nav__item">
             <a className="nav__link" href="/board" aria-current={active === "board" ? "page" : undefined}>Board </a>
           </div>
-          <div className="nav__item"><a className="nav__link" href="/#features">Rules</a></div>
-          <div className="nav__item"><a className="nav__link" href="/#selfhost">Self-host</a></div>
-          <div className="nav__item"><a className="nav__link" href="/#faq">FAQ</a></div>
         </nav>
         <div className="nav__actions">
           <a className="btn btn--primary" href="/board" aria-current={active === "board" ? "page" : undefined}>Open your board</a>

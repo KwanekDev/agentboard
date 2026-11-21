@@ -37,11 +37,6 @@ Every `/api/*` request must then send:
 
     Authorization: Bearer <long-random-string>
 
-## Repositories
-
-- **KwanekDev/agentboard** — the board tool itself: kanban engine, packages (`packages/core`, `packages/mcp`), API, everything self-hosted.
-- **KwanekDev/AgentBoard-Platform** — the web/cloud frontend: landing page, login, web/cloud version, marketing assets and the product panel.
-
 ## Structure
 
     packages/core/  # types + SQLite
